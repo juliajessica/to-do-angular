@@ -14,7 +14,7 @@ export class AppComponent {
   year: number = this.currentTime.getFullYear();
 
   masterTaskList: Task[] = [ //object information should reside in AppComponent
-    new Task('Finish weekend Angular homeworkd for Epicodus course', 3),
+    new Task('Finish weekend Angular homework for Epicodus course', 3),
     new Task('Begin brainstorming possible JavaScript group projects', 1),
     new Task('Add README file to last few Angular repos on GitHub', 2)
   ];
