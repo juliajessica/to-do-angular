@@ -29,4 +29,8 @@ export class AppComponent {
     this.selectedTask = null;
   }
 
+  addTask(newTask: Task) {
+    this.masterTaskList.push(newTask);
+  }
+
 }
