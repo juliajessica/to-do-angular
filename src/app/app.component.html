@@ -2,8 +2,10 @@
   <div style="text-align:center">
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
-    <app-task-list></app-task-list>
-    <!-- //link to the task list component -->
+    <app-task-list [childTaskList]="masterTaskList" (clickSender)="editTask($event)"></app-task-list>
+    <!-- //link to pull the data from the task-list-component ^^  -->
+    <!-- Finally, we need to get the parent and child components talking to each other via the child component's selector tag (which is placed in the parent component's HTML template). In our application, we assigned the value of the child's childTaskList to the parent's masterTaskList like this: <app-task-list [childTaskList]="masterTaskList"></app-task-list>. The variable name on the left must match the variable assigned in the child's @Input. The variable name on the right must match the variable that holds the data in the parent component. -->
+    <!-- [square brackets] represent input from parent & (Parentheses) represent output from child to parent -->
     <h1>Welcome, {{userName}}!</h1>
     <form>
       <input [(ngModel)]="userName" type="text" name="user" class="form-control">
@@ -19,9 +21,9 @@
     <input [(ngModel)]="selectedTask.description" class="form-container">
     <label>Enter Task Priority (1-3):</label>
     <br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="1">1 (Low Priority)<br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="2">2 (Medium Priority)<br>
-    <input type="radio" [(ngModel)]="selectedTask.priority" value="3">3 (High Priority)
+    <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (Low Priority)<br>
+    <input type="radio" [(ngModel)]="selectedTask.priority" [value]="2">2 (Medium Priority)<br>
+    <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (High Priority)
     <button (click)="finishedEditing()">Done</button>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Task } from './models/task.model';
+import { Task } from './models/task.model'; //object inported from models
 
 @Component({
   selector: 'crazy-app-selector',
@@ -13,6 +13,12 @@ export class AppComponent {
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
 
+  masterTaskList: Task[] = [ //object information should reside in AppComponent
+    new Task('Finish weekend Angular homeworkd for Epicodus course', 3),
+    new Task('Begin brainstorming possible JavaScript group projects', 1),
+    new Task('Add README file to last few Angular repos on GitHub', 2)
+  ];
+
   selectedTask = null;
 
   editTask(clickedTask){
@@ -22,8 +28,5 @@ export class AppComponent {
   finishedEditing(){
     this.selectedTask = null;
   }
-
-
-
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Task } from '../models/task.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'; //add input to get the data from app-component
+import { Task } from '../models/task.model'; //pulling in the data for the array
 
 @Component({
   selector: 'app-task-list',
@@ -8,11 +8,13 @@ import { Task } from '../models/task.model';
 })
 
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [
-    new Task('Finish weekend Angular homeworkd for Epicodus course', 3),
-    new Task('Begin brainstorming possible JavaScript group projects', 1),
-    new Task('Add README file to last few Angular repos on GitHub', 2)
-  ];
+  @Input() childTaskList: Task[]; //add input here to recieve the array and change the variable name
+  @Output() clickSender = new EventEmitter(); //@Output to pass an action outwards and upwards to its parent component
+
+  editButtonClicked(taskToEdit: Task) {
+    this.clickSender.emit(taskToEdit);
+    //click sender is the output name given to the new EventEmitter();
+  }
 
   priorityColor(currentTask){
     if (currentTask.priority === 3){
@@ -20,10 +22,9 @@ export class TaskListComponent implements OnInit {
     } else if (currentTask.priority === 2){
       return "bg-warning";
     } else {
-      return "bg-info";
+      return "bg-success";
     }
   }
-
 
   constructor() { }
   ngOnInit() {
