@@ -8,8 +8,9 @@ import { Task } from '../models/task.model'; //pulling in the data for the array
 })
 
 export class TaskListComponent implements OnInit {
-  @Input() childTaskList: Task[]; //add input here to recieve the array and change the variable name
-  @Output() clickSender = new EventEmitter(); //@Output to pass an action outwards and upwards to its parent component
+  @Input() childTaskList: Task[]; //add input to recieve the array & change the variable name
+  @Output() clickSender = new EventEmitter(); //@Output pass action outwards & upwards to parent component
+  filterByCompleteness: string = "incompleteTasks"; //<option value="incompleteTasks" in task-list.html
 
   editButtonClicked(taskToEdit: Task) {
     this.clickSender.emit(taskToEdit);
@@ -24,6 +25,13 @@ export class TaskListComponent implements OnInit {
     } else {
       return "bg-success";
     }
+  }
+  onChange(optionFromMenu) {
+    this.filterByCompleteness = optionFromMenu;
+  }
+
+  toggleDone(clickedTask: Task, setCompleteness: boolean) {
+    clickedTask.done = setCompleteness;
   }
 
   constructor() { }
