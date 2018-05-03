@@ -2,14 +2,14 @@
   <div style="text-align:center">
     <h1>To Do List for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
+    <app-task-list></app-task-list>
+    <!-- //link to the task list component -->
     <h1>Welcome, {{userName}}!</h1>
     <form>
       <input [(ngModel)]="userName" type="text" name="user" class="form-control">
     </form>
     <br>
-    <ul>
-      <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}} <button (click)="editTask(currentTask)" class="btn btn-info">Click me!</button></li>
-    </ul>
+
   </div>
   <div *ngIf="selectedTask">
     <h3>{{selectedTask.description}}</h3>
